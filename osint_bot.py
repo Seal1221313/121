@@ -45,7 +45,10 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 PHONE_RE = re.compile(r"^\+?[0-9][0-9\s().-]{5,20}$")
 USERNAME_RE = re.compile(r"^@?[A-Za-z0-9_.-]{3,64}$")
 
-MALTEGO_TRANSFORM_URL = os.getenv("MALTEGO_TRANSFORM_URL", "").strip()
+MALTEGO_TRANSFORM_URL = os.getenv(
+    "MALTEGO_TRANSFORM_URL",
+    "http://127.0.0.1:3000/run/public_osint/",
+).strip()
 MALTEGO_PHONE_TRANSFORM_URL = os.getenv("MALTEGO_PHONE_TRANSFORM_URL", "").strip()
 MALTEGO_EMAIL_TRANSFORM_URL = os.getenv("MALTEGO_EMAIL_TRANSFORM_URL", "").strip()
 MALTEGO_IP_TRANSFORM_URL = os.getenv("MALTEGO_IP_TRANSFORM_URL", "").strip()
