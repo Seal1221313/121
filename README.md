@@ -2,19 +2,40 @@
 
 Telegram bot built with Python 3.10+ and aiogram 3.x.
 
-This repository is a safe demo: search results are synthetic/mock data only.
-It does not connect to leaked databases, credential dumps, private datasets,
-doxxing services, or other unauthorized sources.
+## Maltego backend
+
+The bot calls a configured Maltego Transform Server endpoint and converts the
+returned Maltego entities into the Unicode tree shown in Telegram.
+
+The configured transform determines the actual data source and permissions.
+Use only transforms and data sources you are authorized to use.
+
+The bot itself does not ship with leaked/private databases.
+
+## Configure
+
+Copy `.env.example` to `.env` and set:
+
+```
+BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
+MALTEGO_TRANSFORM_URL=https://your-transform-host/run/yourtransform/
+```
+
+For separate transforms use:
+`MALTEGO_PHONE_TRANSFORM_URL`,
+`MALTEGO_EMAIL_TRANSFORM_URL`,
+`MALTEGO_IP_TRANSFORM_URL`,
+`MALTEGO_USERNAME_TRANSFORM_URL`.
+
+The bot sends the documented Maltego XML transform request format and parses
+the returned entities. Some transforms require provider-specific credentials.
 
 ## Run
 
-1. Create a bot with BotFather and copy the token.
-2. Create a .env file:
-   BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
-3. Install:
-   python -m pip install -r requirements.txt
-4. Start:
-   python osint_bot.py
+```
+python -m pip install -r requirements.txt
+python osint_bot.py
+```
 
-The bot supports /start, /help, typed searches, Unicode tree rendering,
-refresh, JSON export and starting a new search.
+Send an email, phone number, IP address, or username as a normal Telegram
+message.
